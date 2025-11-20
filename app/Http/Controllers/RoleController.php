@@ -7,7 +7,7 @@ use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use Exception;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
@@ -16,6 +16,12 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
+        if (!Auth::User()->hasPermission('read_roles'))
+            return response()->json([
+                'status' => 'forbidden',
+                'message' => 'You are not authorized to make this request!',
+            ], 403);
+
         $page = $request->get('page') ?? 1;
         $regsPerPage = $request->get('regsPerPage') ?? 10;
         $orderBy = $request->get('orderBy') ?? 'created_at';

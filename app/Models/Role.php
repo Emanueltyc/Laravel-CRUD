@@ -21,4 +21,19 @@ class Role extends Model
             'name' => 'string',
         ];
     }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(
+            Permission::class,
+            'role_permissions',
+            'role_id',
+            'permission_id'
+        );
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'role_id');
+    }
 }

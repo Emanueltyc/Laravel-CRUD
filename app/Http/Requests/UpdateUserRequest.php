@@ -28,6 +28,7 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required',
             'email' => "required|email|unique:users,email,{$userId}",
             'birth_date' => 'nullable|date|before:today',
+            '*.**' => ['prohibited'],
         ];
     }
 }

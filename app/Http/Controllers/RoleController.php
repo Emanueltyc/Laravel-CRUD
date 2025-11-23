@@ -14,13 +14,14 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request, Role $role)
     {
-        if (!Auth::User()->hasPermission('read_roles'))
+        if (!Auth::User()->can('view', $role)) {
             return response()->json([
                 'status' => 'forbidden',
                 'message' => 'You are not authorized to make this request!',
             ], 403);
+        }
 
         $page = $request->get('page') ?? 1;
         $regsPerPage = $request->get('regsPerPage') ?? 10;

@@ -21,6 +21,9 @@ class RolePolicy
      */
     public function view(User $user, Role $role): bool
     {
+        if ($user->hasPermission('read_roles'))
+            return true;
+
         return false;
     }
 

@@ -17,12 +17,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $page = $request->get('page') ?? 1;
-        $regsPerPage = $request->get('regsPerPage') ?? 10;
+        $offset = $request->get('offset') ?? 1;
+        $limit = $request->get('limit') ?? 10;
         $orderBy = $request->get('orderBy') ?? 'created_at';
-        $skip = ($page - 1) * $regsPerPage;
 
-        $users = User::skip($skip)->take($regsPerPage)->orderBy($orderBy)->get();
+        $users = User::skip($offset * $limit)->take($limit)->orderBy($orderBy)->get();
 
         return response()->json($users->toResourceCollection(), 200);
     }

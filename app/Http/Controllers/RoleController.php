@@ -23,12 +23,11 @@ class RoleController extends Controller
             ], 403);
         }
 
-        $page = $request->get('page') ?? 1;
-        $regsPerPage = $request->get('regsPerPage') ?? 10;
+        $offset = $request->get('offset') ?? 0;
+        $limit = $request->get('limit') ?? 10;
         $orderBy = $request->get('orderBy') ?? 'created_at';
-        $skip = ($page - 1) * $regsPerPage;
 
-        $roles = Role::skip($skip)->take($regsPerPage)->orderBy($orderBy)->get();
+        $roles = Role::skip($offset * $limit)->take($limit)->orderBy($orderBy)->get();
 
         return response()->json($roles, 200);
     }

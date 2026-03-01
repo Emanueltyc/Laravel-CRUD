@@ -17,10 +17,17 @@ class UserCollection extends ResourceCollection
     {
         $total = User::count();
 
+        $offset = $request->get('offset') ?? 1;
+        $limit = $request->get('limit') ?? 10;
+        $orderBy = $request->get('orderBy') ?? 'created_at';
+
         return [
             'data' => $this->collection,
             'info' => [
                 'total' => $total,
+                'offset' => $offset,
+                'limit' => $limit,
+                'order' => $orderBy,
             ],
         ];
     }

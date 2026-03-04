@@ -32,6 +32,9 @@ class RolePolicy
      */
     public function create(User $user): bool
     {
+        if ($user->hasPermission('write_roles'))
+            return true;
+
         return false;
     }
 
@@ -40,6 +43,9 @@ class RolePolicy
      */
     public function update(User $user, Role $role): bool
     {
+        if ($user->hasPermission('write_roles'))
+            return true;
+
         return false;
     }
 
@@ -48,6 +54,9 @@ class RolePolicy
      */
     public function delete(User $user, Role $role): bool
     {
+        if ($user->hasPermission('write_roles'))
+            return true;
+
         return false;
     }
 

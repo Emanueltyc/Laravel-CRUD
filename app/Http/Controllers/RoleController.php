@@ -37,6 +37,13 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
+        if (!Auth::User()->can('create')) {
+            return response()->json([
+                'status' => 'forbidden',
+                'message' => 'You are not authorized to make this request!',
+            ], 403);
+        }
+
         try {
             $data = $request->validated();
 

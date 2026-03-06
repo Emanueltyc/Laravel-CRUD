@@ -64,6 +64,13 @@ class RoleController extends Controller
      */
     public function show(string $id)
     {
+        if (!Auth::User()->can('view')) {
+            return response()->json([
+                'status' => 'forbidden',
+                'message' => 'You are not authorized to make this request!',
+            ], 403);
+        }
+
         try {
             $role = Role::findOrFail($id);
             return response()->json($role, 200);

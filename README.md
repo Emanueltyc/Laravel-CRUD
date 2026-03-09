@@ -24,3 +24,15 @@ Clone the repository:
 git clone https://github.com/your-username/your-repository.git
 cd your-repository
 ```
+
+Install PHP dependencies:
+
+```bash
+composer install
+```
+
+Copy the environment file:
+
+```bash
+cp .env.example .env
+```

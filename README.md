@@ -36,3 +36,9 @@ Copy the environment file:
 ```bash
 cp .env.example .env
 ```
+
+Run the migrations:
+
+```bash
+php artisan migrate
+```

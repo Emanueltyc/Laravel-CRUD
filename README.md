@@ -12,7 +12,6 @@ Before running the project, make sure you have the following installed:
 - PHP >= 8.x
 - Composer
 - Laravel CLI (optional but recommended)
-- MySQL or another database supported by Laravel (temporary until PostgreSQL Docker setup is implemented)
 
 ---
 

@@ -37,8 +37,16 @@ Copy the environment file:
 cp .env.example .env
 ```
 
+Configure your database connection inside the .env file.
+
 Run the migrations:
 
 ```bash
 php artisan migrate
+```
+
+Start the development server:
+
+```bash
+php artisan serve
 ```
